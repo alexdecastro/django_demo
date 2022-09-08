@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',  # Use crispy form
     'test_app_01',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
 ]
 
 # Crispy Forms should use Boostrap 4

@@ -5,4 +5,5 @@ urlpatterns = [
     path('test_page/', views.test_page, name='test_page'),
     path('test_template/', views.test_template, name='test_template'),
     path('table_template/', views.table_template, name='table_template'),
+    path('barchart/', views.barchart_view, name='barchart_view'),
 ]
