@@ -101,6 +101,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'test_database',
+        'TEST': {
+            'NAME': 'test_database',
+        },
         'USER': tokens.loc["USER", 'token'],
         'PASSWORD': tokens.loc["PASSWORD", 'token'],
         'HOST': tokens.loc["HOSTNAME", 'token'],
