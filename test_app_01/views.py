@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from test_app_01.models import Patient, Visit
 
@@ -9,11 +9,21 @@ import plotly.express as px
 import plotly.graph_objs as go
 
 
-# Create your views here.
+# Return a JsonResponse
+def test_json_response(request):
+    response = {
+        'ok': True,
+        'message': 'This is a message.',
+    }
+    return JsonResponse(response)
+
+
+# Return a HttpResponse
 def test_page(request):
     return HttpResponse('<h1>test_app_01 Test Page</h1>')
 
 
+# Render a template
 def test_template(request):
     patient = Patient.objects.get(patient_id='0001')
     print("patient_id: ", patient.patient_id)
@@ -31,6 +41,7 @@ def test_template(request):
     return render(request, 'test_app_01/test_template.html', {'title': 'Test Template'})
 
 
+# Render a table view
 def table_template(request):
     patients = Patient.objects.all()
     visits = Visit.objects.all()
@@ -43,6 +54,7 @@ def table_template(request):
     return render(request, 'test_app_01/table_template.html', context)
 
 
+# Render a barchart view
 def barchart_view(request):
     def plot_div1():
         df = pd.DataFrame(
