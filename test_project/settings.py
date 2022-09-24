@@ -30,7 +30,7 @@ with open(os.path.join(BASE_DIR + '/test_project/secure/tokens.json')) as data_f
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = tokens.loc["SECRET_KEY", 'token']
+SECRET_KEY = os.getenv('SECRET_KEY', None)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',  # Use crispy form
     'test_app_01',
-    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
 ]
 
 # Crispy Forms should use Boostrap 4
@@ -97,20 +96,19 @@ DATABASES = {
     }
 }
 """
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test_database',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'local_database',
         'TEST': {
             'NAME': 'test_database',
         },
-        'USER': tokens.loc["USER", 'token'],
-        'PASSWORD': tokens.loc["PASSWORD", 'token'],
-        'HOST': tokens.loc["HOSTNAME", 'token'],
-        'PORT': tokens.loc["PORT", 'token'],
+        'USER': 'postgres',
+        'HOST': '127.0.0.1',
+        'PORT': os.getenv('PGPORT', None),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
