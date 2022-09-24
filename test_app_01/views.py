@@ -25,6 +25,7 @@ def test_page(request):
 
 # Render a template
 def test_template(request):
+    """
     patient = Patient.objects.get(patient_id='0001')
     print("patient_id: ", patient.patient_id)
     print("first_name: ", patient.first_name)
@@ -37,6 +38,7 @@ def test_template(request):
     print("visit_date: ", visit.visit_date)
     print("result1: ", visit.result1)
     print("result2: ", visit.result2)
+    """
 
     return render(request, 'test_app_01/test_template.html', {'title': 'Test Template'})
 
@@ -72,8 +74,10 @@ def barchart_view(request):
         return plot_div
 
     def plot_div2():
-        names = list(Patient.objects.all().values_list('first_name', flat=True).distinct())
-        values = list(Patient.objects.all().values_list('value1', flat=True).distinct())
+        patients = Patient.objects.all().order_by('first_name')
+        names = [p.first_name for p in patients]
+        values = [p.value1 for p in patients]
+
         trace = [
             go.Bar(name='values', x=names, y=values),
         ]

@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class Patient(models.Model):
     patient_id = models.CharField(db_column='patient_id', max_length=32, primary_key=True)
     first_name = models.CharField(db_column='first_name', max_length=32, blank=True, null=True)
