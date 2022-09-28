@@ -1,0 +1,24 @@
+{% load static %}
+
+<!-- Use Crispy Forms -->
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% if title %}
+        <title>Django AppName - {{ title }}</title>
+    {% else %}
+        <title>Django AppName - no title</title>
+    {% endif %}
+    <link href="{% static 'vendor/bootstrap-5/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'vendor/datatables/DataTables-1.12.1/css/jquery.dataTables.min.css' %}" type="text/css"/>
+</head>
+<body>
+<script src="{% static 'vendor/jquery/jquery-3.6.1.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/DataTables-1.12.1/js/jquery.dataTables.js' %}"></script>
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

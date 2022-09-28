@@ -1,0 +1,27 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <script src="{% static 'vendor/plotly-2.14.0.min.js' %}"></script>
+    {{ groups|json_script:"params-data" }}
+    <div class="row">
+        <div class="col-md-24 col-lg-12">
+            <div class="mb-3 card">
+                <div class="card-body">
+                    {{ plot1 | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-24 col-lg-12">
+            <div class="mb-3 card">
+                <div class="card-body">
+                    {{ plot2 | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
